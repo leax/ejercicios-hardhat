@@ -15,7 +15,6 @@ contract Lock {
             block.timestamp < _unlockTime,
             "Unlock time should be in the future"
         );
-
         unlockTime = _unlockTime;
         owner = payable(msg.sender);
     }
@@ -28,7 +27,7 @@ contract Lock {
         require(msg.sender == owner, "You aren't the owner");
 
 
-        emit Withdrawal(address(this).balance/3, block.timestamp);
+        emit Withdrawal(address(this).balance, block.timestamp);
 
         owner.transfer(address(this).balance);
     }
